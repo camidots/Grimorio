@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Criação de Perfil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: black;
+            color: #fff; 
+            background-image: url('imagens/embers.png');   
+            top: -880px;
+            object-position: top center;
+            min-height: 1700px;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            margin-bottom: 0.5rem;
+        }
+        .form-control, .input-group-text {
+            background-color: bisque;
+            border-color: black;
+            color: black;
+        }
+
+        .form-control:focus, .input-group-text:focus{
+            background-color: bisque;
+            border-color: black;
+            color: black;
+        }
+        ::placeholder {
+            color: black !important;;
+        }
+
+    </style>
+      <link rel="icon" href="imagens/favicon.png">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="mb-4">Criação de Perfil</h2>
+            
+            <form>
+                <div class="form-group">
+                    <label for="nomePersonagem">Nome do Personagem</label>
+                    <input type="text" class="form-control" id="nomePersonagem" placeholder="Digite o nome do personagem">
+                </div>
+                
+                <div class="form-group">
+                    <label for="raca">Raça</label>
+                    <div class="input-group">
+                        <select class="form-control" id="raca">
+                            <option disabled selected>Escolha a raça</option>
+                            <option value="humano">Humano</option>
+                            <option value="elfo">Elfo</option>
+                            <option value="anao">Anão</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="classe">Classe</label>
+                    <div class="input-group">
+                        <select class="form-control" id="classe">
+                            <option disabled selected>Escolha a classe</option>
+                            <option value="guerreiro">Guerreiro</option>
+                            <option value="mago">Mago</option>
+                            <option value="ladrao">Ladrão</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nivel">Nível</label>
+                    <input type="number" class="form-control" id="nivel" placeholder="Digite o nível do personagem">
+                </div>
+                
+                <div class="form-group">
+                    <label for="imagem">Imagem</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="cursor: pointer;">
+                                <i class="fas fa-image" onclick="document.getElementById('imagem').click();"></i>
+                            </span>
+                        </div>
+                        <input type="file" class="form-control" id="imagem" style="display: none;">
+                    </div>
+                </div>
+                
+                <div div class="form-group d-flex justify-content-end">
+                    <button type="submit" class="btn btn-danger mr-2">Salvar</button>
+                    <button id="cancelar" class="btn btn-light">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="script/script.js"></script>
+
+</body>
+</html>
