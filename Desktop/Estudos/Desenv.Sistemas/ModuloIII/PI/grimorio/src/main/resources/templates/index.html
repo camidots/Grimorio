@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">  
+    <head> 
+    
+        <title>Assistente do Conjurador - Grimorium</title>
+      <link rel="icon" th:href="@{/images/favicon.png}">
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" th:href="@{/css/style.css}" /> 
+      <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"> 
+      <link rel="stylesheet" th:href="@{/fontawesome-free-6.5.1-web/css/all.min.css}">
+      
+</head>
+
+<body>
+
+  <header><!-- inicio Cabecalho -->
+    <nav class="navbar navbar-expand-md navbar-light fixed-top navbar-transparente">
+      <div class="container">
+
+        <a th:href="@{/#}" class="navbar-brand">
+            <img th:src="@{/images/logo.png}" width="240">
+        </a>
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#nav-principal">
+          <i class="fas fa-bars text-white"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="nav-principal">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a th:href="@{/#}" class="nav-link">Premium</a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/#}" class="nav-link">Ajuda</a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/#}" class="nav-link">Baixar</a>
+            </li>
+
+            <li class="nav-item divisor"></li>
+
+            <li class="nav-item">
+              <a th:href="@{/#}" class="nav-link">Inscrever-se</a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/login}" class="nav-link entrar-link">Entrar</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <div class="sidenav"> <!-- Barra Lateral -->
+    <a th:href="@{/#}" class="profile-link selected" title="Strahd von Zarovich" data-boundary="window">
+      <img th:src="@{images/perfil_1.jpg}" alt="Imagem de Perfil" class="profile-image" id="profile">
+      <span class="menu-label">
+        <div class="profile-info">
+          <div class="name">Strahd von Zarovich</div>
+          <div>
+            <span class="level-bar">Level 20</span>
+            <span>Vampiro</span>
+            <div>Mago</div>
+          </div>
+        </div>
+      </span>
+    </a>
+
+    <a th:href="@{/cadastroPerfil}" id="infoLink" title="Novo Perfil" data-boundary="window">
+      <i class="fas fa-plus"></i>
+      <span class="menu-label">Novo Perfil</span>
+    </a>
+
+    <a th:href="@{/#}" id="expandBtn"><i class="fas fa-chevron-right"></i></a>
+
+    <a th:href="@{/#}" id="infoLink" title="Configurações" data-boundary="window">
+      <i class="fas fa-cog"></i>
+      <span class="menu-label">Configurações</span>
+    </a>
+  </div>
+
+  <div class="container mt-5"><!-- Botões Magias -->
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center">
+        <button id="todasMagiasBtn" class="btn btn-secondary btn-rounded mr-2">Todas as Magias</button>
+        <button id="favoritasBtn" class="btn btn-secondary btn-rounded">Favoritas</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Página todas as magias -->
+
+  <div class="page" id="page-content">
+
+    <!-- Parte 1 -->
+    <div class="part part1">
+      <input type="text" class="form-control rounded-input" placeholder="Digite sua busca" aria-label="Digite sua busca"
+        aria-describedby="basic-addon2">
+
+
+      <div class="title-section">
+        <div class="titulo">Acalmar Emoções</div>
+        <div class="icons">
+        <a href="#" id="favorito" title="Favoritar" th:onclick="toggleFavorito()">
+            <i class="far fa-heart" id="heartIcon"></i>
+        </a>    
+        <a th:href="@{/#}" id="infoContent"title="Datalhes">
+          <i class="fas fa-info-circle"></i>
+        </a>
+        </div>
+      </div>
+
+      <div class="descricao">2° nível de encantamento</div>
+      <div class="title-border"></div>
+    </div>
+
+    <!-- Parte 2 -->
+    <div class="part part2 hidden" id="part2">
+      <div class="rectangle"></div>
+      <div class="rectangle-inner">
+        <div class="info">
+          <div style="font-size: 21px;">Acalmar Emoções (Calm Emotions)</div>
+          <div><em>2º nível de encantamento</em></div>
+          <div><b>Tempo De Conjuração:</b><span> 1 ação</span></div>
+          <div><b>Alcance:</b><span> 60 pés</span></div>
+          <div><b>Componentes:</b><span> V S</span></div>
+          <div><b>Duração:</b><span> concentração, até 1 minutos</span></div>
+          <div style="font-size: 15px;">Você tenta suprimir emoções fortes em um grupo de pessoas. Cada humanoide em uma esfera de 6 metros de
+            raio [20-foot radius], centrada em um ponto que você escolher dentro do alcance, deve realizar um teste de
+            resistência de Carisma; uma criatura pode escolher falhar nesse teste, se desejar. Se uma criatura falhar na
+            resistência, escolha um dentre os dois efeitos a seguir.
+            Você pode suprimir qualquer efeito que esteja deixando a criatura enfeitiçada ou amedrontada. Quando essa
+            magia terminar, qualquer efeito suprimido volta a funcionar, considerando que sua duração não tenha acabado
+            nesse meio tempo.
+            Alternativamente, você pode tornar um alvo indiferente às criaturas que você escolher que forem hostis a
+            ele. Essa indiferença acaba se o alvo for atacado ou ferido por uma magia ou se ele testemunhar qualquer dos
+            seus amigos sendo ferido. Quando a magia terminar, a criatura se tornará hostil novamente, a não ser que o
+            Mestre diga o contrário.</div>
+          <div><b>Fontes:</b><span> Documento De Referência De Sistema pg 123</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Página magias favoritas -->
+
+  <div class="page" id="page-fav">
+    <!-- Parte 1 -->
+    <div class="part part1">
+      <div class="title-section">
+        <input type="text" class="form-control rounded-input" placeholder="Digite sua busca"
+          aria-label="Digite sua busca" aria-describedby="basic-addon2">
+        <div class="icons">
+
+          <div class="titulo" style="text-align: center"> HABILIDADE<br>
+            DE CONJURAÇÃO </div>
+          <input type="text" class="input-dados" id="inputHab" value="SAB">
+
+          <div class="titulo">CD MAGIA</div>
+          <input type="text" class="input-dados" id="inputHab" value="15">
+
+          <div class="titulo">BÔNUS MAGIA</div>
+          <input type="text" class="input-dados" id="inputHab" value="+4">
+
+        </div>
+      </div>
+
+      <div class="title-section">
+        <div class="titulo" style="padding-top: 15px;">TRUQUES</div>
+        <span class="toggle-icon" th:onclick="toggleContent()"><i class="fas fa-chevron-down"></i></span>
+        <div class="icons">
+          <input type="text" class="form-control etiqueta-input" id="inputEtiqueta"
+            title="Magias Diárias" value="0">
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="toggle-content">
+          <div class="title-section">
+            <div class="titulo">Acalmar Emoções</div>
+            <div class="icons">
+              <a th:href="@{/#}" id="dado" title="Role o dado!">
+                <i class="fas fa-dice"></i>
+              </a>
+              <a th:href="@{/#}" id="infoContent1" title="Detalhes">
+                <i class="fas fa-info-circle"></i>
+              </a>
+              <a th:href="@{/#}" >
+                <i class="far fa-circle" th:onclick="toggleBolinha(1)" id="bolinha-1"></i>
+              </a>
+              <a th:href="@{/#}">
+                <i class="far fa-circle" th:onclick="toggleBolinha(2)"  id="bolinha-2"></i>
+              </a>
+              <a th:href="@{/#}" >
+                <i class="far fa-circle" th:onclick="toggleBolinha(3)" id="bolinha-3"></i>
+              </a>
+              <a th:href="@{/#}" >
+                <i class="far fa-circle" th:onclick="toggleBolinha(4)" id="bolinha-4"></i>
+              </a>
+              <a th:href="@{/#}" >
+                <i class="far fa-circle" th:onclick="toggleBolinha(5)" id="bolinha-5"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="descricao">2° nível de encantamento</div>
+        </div>
+        <div class="desc-border"></div>
+      </div>
+      <div class="title-border"></div>
+    </div>
+
+    <!-- Parte 2 -->
+
+    <div class="part part2 hidden" id="part3">
+      <div class="rectangle"></div>
+      <div class="rectangle-inner">
+        <div class="info">
+          <div style="font-size: 21px;">Acalmar Emoções (Calm Emotions)</div>
+          <div><em>2º nível de encantamento</em></div>
+          <div><b>Tempo De Conjuração:</b><span> 1 ação</span></div>
+          <div><b>Alcance:</b><span> 60 pés</span></div>
+          <div><b>Componentes:</b><span> V S</span></div>
+          <div><b>Duração:</b><span> concentração, até 1 minutos</span></div>
+          <divdiv style="font-size: 15px;">Você tenta suprimir emoções fortes em um grupo de pessoas. Cada humanoide em uma esfera de 6 metros
+            de
+            raio [20-foot radius], centrada em um ponto que você escolher dentro do alcance, deve realizar um
+            teste de
+            resistência de Carisma; uma criatura pode escolher falhar nesse teste, se desejar. Se uma criatura
+            falhar na
+            resistência, escolha um dentre os dois efeitos a seguir.
+            Você pode suprimir qualquer efeito que esteja deixando a criatura enfeitiçada ou amedrontada. Quando
+            essa
+            magia terminar, qualquer efeito suprimido volta a funcionar, considerando que sua duração não tenha
+            acabado
+            nesse meio tempo.
+            Alternativamente, você pode tornar um alvo indiferente às criaturas que você escolher que forem hostis
+            a
+            ele. Essa indiferença acaba se o alvo for atacado ou ferido por uma magia ou se ele testemunhar
+            qualquer dos
+            seus amigos sendo ferido. Quando a magia terminar, a criatura se tornará hostil novamente, a não ser
+            que o
+            Mestre diga o contrário.</div>
+          <div><b>Fontes:</b><span> Documento De Referência De Sistema pg 123</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer><!-- Rodapé-->
+    <div>
+      <div>
+        <p>Copywriting © Version 1.0.0</p>
+      </div>
+    </div>
+  </footer>
+
+
+
+      <script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+      <script th:src="@{/js/popper.min.js}"></script>
+      <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script> 
+      <script th:src="@{/js/script.js}"></script>
+      <script th:src="@{/fontawesome-free-6.5.1-web/js/all.min.js}"></script> 
+
+    </body> 
+
+</html>
