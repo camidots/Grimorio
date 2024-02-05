@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> 
+    <head> 
+    
+        <title>Cadastro de Perfil</title>
+      <link rel="icon" th:href="@{/images/favicon.png}">
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" th:href="@{/css/style.css}" /> 
+      <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"> 
+      <link rel="stylesheet" th:href="@{/fontawesome-free-6.5.1-web/css/all.min.css}">
+      
+
+    <style>
+        body {
+            background-color: black;
+            color: #fff; 
+            background-image: url('images/embers.png');   
+            top: -880px;
+            object-position: top center;
+            min-height: 1700px;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            margin-bottom: 0.5rem;
+        }
+        .form-control, .input-group-text {
+            background-color: bisque;
+            border-color: black;
+            color: black;
+        }
+
+        .form-control:focus, .input-group-text:focus{
+            background-color: bisque;
+            border-color: black;
+            color: black;
+        }
+        ::placeholder {
+            color: black !important;;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="mb-4">Criação de Perfil</h2>
+            
+            <form id="cadastroPerfil">
+                <div class="form-group">
+                    <label for="nomePersonagem">Nome do Personagem</label>
+                    <input type="text" class="form-control" id="nomePersonagem" placeholder="Digite o nome do personagem" maxlength="50" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="raca">Raça</label>
+                    <div class="input-group">
+                        <select class="form-control" name="id_raca" id="raca" required>
+                            <option disabled selected>Escolha a raça</option>
+                            <option th:each="raca : ${racas}" th:value="${raca.idRaca}" th:text="${raca.nomeRaca}"></option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="classe">Classe</label>
+                    <div class="input-group">
+                        <select class="form-control" id="classe" name="id_classe" required>
+                           <option disabled selected>Escolha a classe</option>
+                           <option th:each="classe : ${classes}" th:value="${classe.idClasse}" th:text="${classe.nomeClasse}"></option>
+                       </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nivel">Nível</label>
+                    <input type="number" class="form-control" id="nivel" placeholder="Digite o nível do personagem" maxlength="2" min="1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="imagem">Imagem</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="cursor: pointer;">
+                                <i class="fas fa-image" th:onclick="document.getElementById('imagem').click();"></i>
+                            </span>
+                        </div>
+                        <input type="file" class="form-control" id="imagem" name="imagem" style="display: none;" accept="image/*">
+                        <input type="text" id="caminhoImagem" name="caminhoImagem" style="display: none;" />
+                        <label class="input-group-text" id="imagemLabel"></label>
+                    </div>
+                </div>
+                
+                <div class="form-group d-flex justify-content-end">
+                    <button type="submit" class="btn btn-danger mr-2">Salvar</button>
+                    <a id="cancelar" class="btn btn-light" th:href="@{/index}">Cancelar</a>
+                </div>
+                
+                <div class="modal" id="feedbackModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Feedback</h5>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <p id="feedbackMessage"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("nivel").addEventListener("input", function() {
+        if (this.value.length > 2) {
+            this.value = this.value.slice(0, 2);  
+        }
+    });
+    
+        function validarSelect() {
+        var select = document.getElementById('seuSelect');
+        var modal = document.getElementById('feedbackModal');
+        var feedbackMessage = document.getElementById('feedbackMessage');
+
+        // Verificar se uma opção válida foi selecionada
+        if (select.value === "") {
+            // Mostrar feedback de erro no modal
+            feedbackMessage.innerHTML = 'Por favor, selecione uma opção.';
+            $(modal).modal('show');  // Usando jQuery para exibir o modal
+        }
+    }
+</script>
+
+
+      <script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+      <script th:src="@{/js/popper.min.js}"></script>
+      <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script> 
+      <script th:src="@{/js/script.js}"></script>
+      <script th:src="@{/fontawesome-free-6.5.1-web/js/all.min.js}"></script> 
+
+
+    </body> 
+
+
+
+
+</html>

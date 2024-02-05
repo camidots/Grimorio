@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">  
+    <head> 
+    
+        <title>Assistente do Conjurador - Grimorium</title>
+      <link rel="icon" th:href="@{/images/favicon.png}">
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" th:href="@{/css/style.css}" /> 
+      <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"> 
+      <link rel="stylesheet" th:href="@{/fontawesome-free-6.5.1-web/css/all.min.css}">
+      
+</head>
+
+<body>
+
+  <header><!-- inicio Cabecalho -->
+    <nav class="navbar navbar-expand-md navbar-light fixed-top navbar-transparente">
+      <div class="container">
+
+        <a th:href="@{/#}" class="navbar-brand">
+            <img th:src="@{/images/logo.png}" width="240">
+        </a>
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#nav-principal">
+          <i class="fas fa-bars text-white"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="nav-principal">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a th:href="@{/#}" class="nav-link">Premium</a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/#}" class="nav-link">Ajuda</a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/#}" class="nav-link">Baixar</a>
+            </li>
+
+            <li class="nav-item divisor"></li>
+
+            <li class="nav-item">
+              <a th:href="@{/#}" class="nav-link">Inscrever-se</a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/login}" class="nav-link entrar-link">Entrar</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <div class="sidenav"> <!-- Barra Lateral -->
+      
+    <div id="perfilContainer"></div>
+      
+
+    <a th:href="@{/cadastroPerfil}" id="infoLink" title="Novo Perfil" data-boundary="window">
+      <i class="fas fa-plus"></i>
+      <span class="menu-label">Novo Perfil</span>
+    </a>
+
+    <a th:href="@{/#}" id="expandBtn" style="margin-right: 6px;"><i class="fas fa-chevron-right"></i></a>
+
+    <a th:href="@{/#}" id="infoLink" title="Configurações" data-boundary="window">
+      <i class="fas fa-cog"></i>
+      <span class="menu-label">Configurações</span>
+    </a>
+  </div>
+
+  <div class="container mt-5"><!-- Botões Magias -->
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center">
+        <button id="todasMagiasBtn" class="btn btn-secondary btn-rounded mr-2">Todas as Magias</button>
+        <button id="favoritasBtn" class="btn btn-secondary btn-rounded">Favoritas</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Página todas as magias -->
+
+    <div class="page" id="page-content">
+
+    <!-- Parte 1 -->
+        <div class="part part1">
+          
+          <input type="text" class="form-control rounded-input" placeholder="Digite sua busca" aria-label="Digite sua busca"
+                 aria-describedby="basic-addon2" id="searchInput">
+           <div id="magiaContainer"></div>
+        </div>    
+
+        <!-- Parte 2 -->
+        <div class="part part2 hidden" id="part2"></div>
+    
+    </div> 
+    
+  <!-- Página magias favoritas -->
+
+    <div class="page" id="page-fav">
+      
+        <!-- Parte 1 -->
+        <div class="part part1">
+            <div class="title-section">
+                <input type="text" class="form-control rounded-input" placeholder="Digite sua busca"
+                  aria-label="Digite sua busca" aria-describedby="basic-addon2">
+                <div class="icons">
+                    <div class="titulo" style="text-align: center"> HABILIDADE<br>
+                      DE CONJURAÇÃO </div>
+                    <input type="text" class="input-dados" id="inputHab" value="SAB">
+
+                    <div class="titulo">CD MAGIA</div>
+                    <input type="text" class="input-dados" id="inputHab1" value="15">
+
+                    <div class="titulo">BÔNUS MAGIA</div>
+                    <input type="text" class="input-dados" id="inputHab1" value="+4">
+                </div>
+            </div>
+        
+            <div id="magiaSection" style="margin-top: 20px"></div>
+       </div>  
+
+        <!-- Parte 2 -->
+       <div class="part part2 hidden" id="part3"></div>
+    
+    </div>
+  
+  <!-- Modal dado -->
+    <div class="modal" tabindex="-1" role="dialog" id="diceModal">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header">
+            <h5 class="modal-title">Gerador de dados</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label for="diceSelect">Selecione o dado:</label>
+            <select class="form-control bg-dark text-white" id="diceSelect" required>
+              <option value="" disabled selected>Selecione o dado</option> 
+              <option value="4">1d4</option>
+              <option value="6">1d6</option>
+              <option value="8">1d8</option>
+              <option value="10">1d10</option>
+              <option value="12">1d12</option>
+              <option value="20">1d20</option>
+            </select>
+            <div class="mt-3">
+              <button class="btn btn-light" onclick="rollDice()">Rodar!</button>
+              <span class="ml-2" id="result"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="modal" tabindex="-1" role="dialog" id="modal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-exclamation-circle" style="display: inline-block; vertical-align: middle;"></i> 
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <div class="modal-body">
+                <label id="modalContentLabel"></label>
+              <div class="mt-3">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="text-align: center">Cancelar</button>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+                <!-- Modal Excluir -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content text-dark">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id= deleteModalLabel>Confirmação de Exclusão</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Tem certeza que gostaria de apagar esse Perfil?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-danger" id="btnDelete">Excluir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        
+</div>
+
+  <footer><!-- Rodapé-->
+    <div>
+      <div>
+        <p>Copywriting © Version 1.0.0</p>
+      </div>
+    </div>
+  </footer>
+
+
+
+      <script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+      <script th:src="@{/js/popper.min.js}"></script>
+      <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script> 
+      <script th:src="@{/js/script.js}"></script>
+      <script th:src="@{/fontawesome-free-6.5.1-web/js/all.min.js}"></script> 
+
+    </body> 
+
+</html>
